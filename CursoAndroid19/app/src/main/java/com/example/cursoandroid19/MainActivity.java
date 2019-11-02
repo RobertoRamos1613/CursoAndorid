@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,17 +19,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toast.makeText(this,"Hola desde onCreate",Toast.LENGTH_SHORT).show();
 
+        final EditText nombre = (EditText)findViewById(R.id.Nombre);
         boton = (Button) findViewById(R.id.Boton);
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(),"El empalador",Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(),Main2Activity.class);
+                final String textTrasladado = nombre.getText().toString();
+                intent.putExtra("Valor", textTrasladado);
                 startActivity(intent);
             }
         });
     }
-
 
     @Override
     protected void onStart() {
